@@ -32,52 +32,50 @@
             text-align: center;
         }
         .square {
-    width: 1000px;
-    height: 600px;
-    background-image: url('board.png');
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    color: white;
-    text-align: center;
-}
-.square p {
-    font-weight: bold;
-    color: gold;
-}
+            width: 90%;
+            max-width: 1000px;
+            height: auto;
+            background-image: url('board.png');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
-		
-.input-group {
-    margin-bottom: 20px;
-}
-
-.form-control {
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-
-.btn {
-    border-radius: 20px;
-    font-weight: bold;
-    margin: 0 10px;
-}
+        .square p {
+            font-weight: bold;
+            color: gold;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+        .btn {
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 0 10px;
+        }
         .square .counter-prefix {
             font-family: sans-serif;
         }
         .square .counter-number {
             font-family: 'Intro', sans-serif;
         }
-		.square-and-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .square-and-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .btn-signal {
             width: 150px;
             font-size: 1em;
@@ -122,7 +120,6 @@
             display: flex;
             justify-content: center;
         }
-
         #loading-text span {
             display: inline-block;
             animation: bounce 0.8s ease-in-out infinite alternate;
@@ -133,7 +130,6 @@
                         0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
             transform-origin: bottom;
         }
-
         #loading-text span:nth-child(1) { animation-delay: 0s; }
         #loading-text span:nth-child(2) { animation-delay: 0.1s; }
         #loading-text span:nth-child(3) { animation-delay: 0.2s; }
@@ -141,7 +137,6 @@
         #loading-text span:nth-child(5) { animation-delay: 0.4s; }
         #loading-text span:nth-child(6) { animation-delay: 0.5s; }
         #loading-text span:nth-child(7) { animation-delay: 0.6s; }
-
         @keyframes bounce {
             0% {
                 transform: translateY(0px);
@@ -156,41 +151,52 @@
                              0 9px 0 transparent, 0 50px 25px rgba(0, 0, 0, 0.2);
             }
         }
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            .square {
+                font-size: 1em;
+                padding: 10px;
+            }
+            .btn {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+            #jet, #sub-jet {
+                width: 100px;
+                height: 100px;
+            }
+        }
     </style>
 </head>
-
 <body>
     <div id="jet">
         <div id="sub-jet"></div>
     </div>
     <div class="container text-center">
-    <h1 class="title" id="loading-text">
-        <img src="logo.png" alt="The Dog House" style="max-width: 100%; height: auto;">
-    </h1>
-    <div class="square-and-button">
-        <div class="square">
-            <p>Ставка: <span id="stake">0.00</span>₽</p>
-            <p>Автоматические спины: <span id="spins">10</span></p>
-            <p>Ваш баланс: <span id="balance">0.00</span>₽</p>
+        <h1 class="title" id="loading-text">
+            <img src="logo.png" alt="The Dog House" style="max-width: 100%; height: auto;">
+        </h1>
+        <div class="square-and-button">
+            <div class="square">
+                <p>Ставка: <span id="stake">0.00</span>₽</p>
+                <p>Автоматические спины: <span id="spins">10</span></p>
+                <p>Ваш баланс: <span id="balance">0.00</span>₽</p>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="enterDeposit()">Ввести депозит</button>
+                <button class="btn btn-success" onclick="signalEntered()" style="display: none;" id="enteredBtn">Сигнал зашёл</button>
+                <button class="btn btn-danger" onclick="signalNotEntered()" style="display: none;" id="notEnteredBtn">Сигнал не зашёл</button>
+            </div>
         </div>
-        <div class="btn-group">
-            <button class="btn btn-primary" onclick="enterDeposit()">Ввести депозит</button>
-            <button class="btn btn-success" onclick="signalEntered()" style="display: none;" id="enteredBtn">Сигнал зашёл</button>
-            <button class="btn btn-danger" onclick="signalNotEntered()" style="display: none;" id="notEnteredBtn">Сигнал не зашёл</button>
-        </div>
-</div>
     </div>
     <script>
         let deposit = 0;
         let stake = 0;
         let spins = 10;
         let balance = 0;
-       document.getElementById('depositButton').addEventListener('click', function() {
-    deposit = parseFloat(document.getElementById('depositInput').value);
-    stake = deposit * 0.01;
-    updateDisplay();
-    document.getElementById('signalButtons').style.display = 'flex';
-});
+
         function enterDeposit() {
             deposit = parseFloat(prompt("Пожалуйста, введите ваш депозит:"));
             stake = deposit * 0.13;
@@ -222,11 +228,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.amazonaws.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
