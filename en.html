@@ -26,45 +26,48 @@
         }
         .title {
             font-family: 'Intro', sans-serif;
-            font-size: 4em;
+            font-size: 2em; /* Уменьшен размер шрифта */
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 10px; /* Уменьшен отступ снизу */
             text-align: center;
+            margin-top: 10px; /* Поднять лого повыше */
         }
         .square {
             width: 90%;
-            max-width: 700px;
-            height: 700px;
+            max-width: 600px;
+            height: auto;
             background-image: url('board.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Уменьшен отступ снизу */
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 1em; /* Уменьшить размер шрифта */
+            font-size: 0.8em; /* Уменьшен размер шрифта */
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
         .square p {
             font-weight: bold;
             color: gold;
+            margin: 5px 0; /* Уменьшен отступ между абзацами */
         }
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Уменьшен отступ снизу */
         }
         .form-control {
             border-radius: 20px;
-            padding: 10px 20px;
+            padding: 5px 10px; /* Уменьшен отступ внутри полей ввода */
         }
         .btn {
             border-radius: 20px;
             font-weight: bold;
-            margin: 0 10px;
+            margin: 5px 5px; /* Уменьшен отступ между кнопками */
+            padding: 5px 10px; /* Уменьшен отступ внутри кнопок */
         }
         .square .counter-prefix {
             font-family: sans-serif;
@@ -78,7 +81,7 @@
             align-items: center;
         }
         .btn-signal {
-            width: 100px;
+            width: 150px;
             font-size: 1em;
             position: relative;
             font-family: 'Intro', sans-serif;
@@ -88,7 +91,27 @@
             color: white;
             border: none;
         }
-       
+        #jet {
+            position: absolute;
+            top: 20%;
+            left: 0%;
+            width: 160px;
+            height: 160px;
+            background: url('1.png') no-repeat;
+            background-size: contain;
+            animation: moveBackAndForth 12s ease-in-out infinite;
+            z-index: 10;
+        }
+        #sub-jet {
+            position: absolute;
+            top: 90px;
+            left: -96px;
+            width: 150px;
+            height: 150px;
+            background: url('2.gif') no-repeat;
+            background-size: contain;
+            z-index: 10;
+        }
         @keyframes moveBackAndForth {
             0%, 100% { transform: translate(0, 0); }
             30% { transform: translate(280px, 280px); }
@@ -134,19 +157,19 @@
         }
         @media (max-width: 768px) {
             .title {
-                font-size: 2em;
+                font-size: 1.5em; /* Уменьшен размер шрифта для мобильных устройств */
             }
             .square {
-                font-size: 0.8em; /* Уменьшить размер шрифта для мобильных устройств */
-                padding: 10px;
+                font-size: 0.6em; /* Уменьшен размер шрифта для мобильных устройств */
+                padding: 5px;
             }
             .btn {
-                font-size: 0.8em;
-                padding: 5px 10px;
+                font-size: 0.6em;
+                padding: 3px 6px;
             }
             #jet, #sub-jet {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
